@@ -23,7 +23,7 @@ function App() {
       <div className="bg-white lg:py-4 lg:px-4  rounded-3xl max-w-80 lg:max-w-4xl">
         <div
           className={
-            subscribed ? "hidden" : `grid gap-8 lg:grid-cols-2 lg:gap-2`
+            subscribed ? `hidden` : `grid gap-8 lg:grid-cols-2 lg:gap-2`
           }
         >
           <div className="space-y-4 flex flex-col justify-center px-5 lg:px-8 pb-10 lg:pb-0  order-last">
@@ -94,7 +94,7 @@ function App() {
         </div>
 
         {/* subscribed */}
-        {subscribed ? (
+        {/* {subscribed ? (
           <div className="space-y-5 py-8 max-w-lg px-6">
             <img src="icon-success.svg" alt="success" />
             <p className="text-black font-bold text-3xl lg:text-6xl">
@@ -113,7 +113,24 @@ function App() {
           </div>
         ) : (
           "hidden"
-        )}
+        )} */}
+
+        <div className={subscribed ? `space-y-5 py-8 max-w-lg px-6` : `hidden`}>
+          <img src="icon-success.svg" alt="success" />
+          <p className="text-black font-bold text-3xl lg:text-6xl">
+            Thanks for subscribing!
+          </p>
+          <p className="text-black font-semibold">
+            A confirmation email has been sent to {email}. Please open it and
+            click the button inside to confirm your subscription.
+          </p>
+          <button
+            onClick={handleDismiss}
+            className="bg-blue-950 transition-colors w-full duration-300 ease-in-out rounded-lg px-4 lg:px-8 py-3 font-semibold hover:bg-gradient-to-r from-rose-400 to-orange-300"
+          >
+            Dismiss message
+          </button>
+        </div>
       </div>
     </div>
   );
