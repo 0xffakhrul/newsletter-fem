@@ -15,15 +15,18 @@ function App() {
     }
   };
 
+  const handleDismiss = () => {
+    setSubscribed(false);
+  };
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-white lg:py-4 lg:px-4 lg:pl-14 rounded-3xl max-w-80 lg:max-w-4xl">
+      <div className="bg-white lg:py-4 lg:px-4  rounded-3xl max-w-80 lg:max-w-4xl">
         <div
           className={
-            subscribed ? "hidden" : `grid gap-8 lg:grid-cols-2 lg:gap-14`
+            subscribed ? "hidden" : `grid gap-8 lg:grid-cols-2 lg:gap-2`
           }
         >
-          <div className="space-y-4 flex flex-col justify-center px-6 pb-10 lg:pb-0 lg:px-0 order-last">
+          <div className="space-y-4 flex flex-col justify-center px-5 lg:px-8 pb-10 lg:pb-0  order-last">
             <p className="text-black font-bold text-4xl lg:text-6xl pb-2 lg:pb-4 tracking-tighter">
               Stay updated!
             </p>
@@ -57,9 +60,9 @@ function App() {
                 type="email"
                 className={`rounded-md w-full  border-2 ${
                   error
-                    ? "bg-red-100 text-red-200 border-red-200"
-                    : "bg-white text-black border-gray-200"
-                }  px-5 py-3 text-sm focus:border-black focus:ring-2 focus:ring-black`}
+                    ? "bg-red-100 border-red-200"
+                    : "bg-white  border-gray-200"
+                }  px-4 py-3 focus:border-black text-black focus:ring-2 focus:ring-black`}
                 placeholder="email@company.com"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -91,19 +94,26 @@ function App() {
         </div>
 
         {/* subscribed */}
-        <div className="space-y-5 py-8 max-w-lg pr-10">
-          <img src="icon-success.svg" alt="success" />
-          <p className="text-black font-bold text-3xl lg:text-6xl">
-            Thanks for subscribing!
-          </p>
-          <p className="text-black font-semibold">
-            A confirmation email has been sent to {email}. Please open it and
-            click the button inside to confirm your subscription.
-          </p>
-          <button className="bg-blue-950 transition-colors w-full duration-300 ease-in-out rounded-lg px-4 lg:px-8 py-3 font-semibold hover:bg-gradient-to-r from-rose-400 to-orange-300">
-            Dismiss message
-          </button>
-        </div>
+        {subscribed ? (
+          <div className="space-y-5 py-8 max-w-lg px-6">
+            <img src="icon-success.svg" alt="success" />
+            <p className="text-black font-bold text-3xl lg:text-6xl">
+              Thanks for subscribing!
+            </p>
+            <p className="text-black font-semibold">
+              A confirmation email has been sent to {email}. Please open it and
+              click the button inside to confirm your subscription.
+            </p>
+            <button
+              onClick={handleDismiss}
+              className="bg-blue-950 transition-colors w-full duration-300 ease-in-out rounded-lg px-4 lg:px-8 py-3 font-semibold hover:bg-gradient-to-r from-rose-400 to-orange-300"
+            >
+              Dismiss message
+            </button>
+          </div>
+        ) : (
+          "hidden"
+        )}
       </div>
     </div>
   );
